@@ -16,7 +16,7 @@ class Usuario
         $this->id = $id;
     }
 
-    public function getNombreUsuario()
+    public function getUsuario()
     {
         return "$this->nombre_usuario";
     }
@@ -38,11 +38,5 @@ class Usuario
         return $this->id;
     }
 
-    public function setDatos($nombre_usuario, $nombre, $apellido, $email)
-    {
-        $this->nombre_usuario = $nombre_usuario;
-        $this->nombre = $nombre;
-        $this->apellido = $apellido;
-        $this->email = $email;
-    }
+
 }

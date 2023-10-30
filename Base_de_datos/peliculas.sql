@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-10-2023 a las 16:54:25
+-- Tiempo de generación: 20-10-2023 a las 05:33:23
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -36,14 +36,15 @@ CREATE TABLE `genero` (
 -- Volcado de datos para la tabla `genero`
 --
 
-INSERT INTO `genero`(`codigo_genero`, `nombre`) VALUES (1,'drama');
-INSERT INTO `genero`(`codigo_genero`, `nombre`) VALUES (2,'ciencia ficción');
-INSERT INTO `genero`(`codigo_genero`, `nombre`) VALUES (3,'romance');
-INSERT INTO `genero`(`codigo_genero`, `nombre`) VALUES (4,'comedia');
-INSERT INTO `genero`(`codigo_genero`, `nombre`) VALUES (5,'documental');
-INSERT INTO `genero`(`codigo_genero`, `nombre`) VALUES (6,'policial');
-INSERT INTO `genero`(`codigo_genero`, `nombre`) VALUES (7,'superhéroes');
-INSERT INTO `genero`(`codigo_genero`, `nombre`) VALUES (8,'otro');
+INSERT INTO `genero` (`codigo_genero`, `nombre`) VALUES
+(1, 'drama'),
+(2, 'ciencia ficción'),
+(3, 'romance'),
+(4, 'comedia'),
+(5, 'documental'),
+(6, 'policial'),
+(7, 'superhéroes'),
+(8, 'otro');
 
 -- --------------------------------------------------------
 
@@ -60,6 +61,16 @@ CREATE TABLE `peliculas` (
   `resenia` varchar(40) NOT NULL,
   `disponibilidad` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `peliculas`
+--
+
+INSERT INTO `peliculas` (`id_pelicula`, `titulo`, `anio`, `id_genero`, `id_usuario`, `resenia`, `disponibilidad`) VALUES
+(7, 'Terminator', 1984, 2, 3, 'Muy buena', 'Mega'),
+(8, '1917', 2019, 8, 3, 'Regular', 'No disponible'),
+(9, 'El resplandor', 1980, 8, 1, 'Buena', 'Mega'),
+(10, '9 reinas', 2000, 1, 1, 'Muy buena', 'Mediafire');
 
 -- --------------------------------------------------------
 
@@ -81,7 +92,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `usuario`, `clave`, `nombre`, `apellido`, `email`) VALUES
-(1, 'ejemplo', '$2y$10$MKEZOE1o/HEE2KAgDMBkq.j6kjw0tiu.FGMSKLdi9wU8MMDQIlpFO', 'Fulano', 'de Tal', 'pedroroberti99@gmail.com');
+(1, 'ejemplo', '$2y$10$MKEZOE1o/HEE2KAgDMBkq.j6kjw0tiu.FGMSKLdi9wU8MMDQIlpFO', 'Fulano', 'de Tal', 'pedroroberti99@gmail.com'),
+(3, 'juan', '$2y$10$biFQcZuBnnWIcGvOwO/6q.3DDK6q4KPlVeHy9Ve3AvJMAMPo./b.e', '1234', 'Mario', 'Suarez'),
+(19, 'matias', '$2y$10$xFM9fSuR5I7AnKq.oOEWoeTrPKdwWDlNak142bDX0SHrYruBi2r12', 'matias', 'curto', 'matiascurto@gmail.com');
 
 --
 -- Índices para tablas volcadas
@@ -115,13 +128,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `peliculas`
 --
 ALTER TABLE `peliculas`
-  MODIFY `id_pelicula` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pelicula` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Restricciones para tablas volcadas

@@ -106,12 +106,42 @@ if (isset($_POST['titulo']) && isset($_POST['anio']) && isset($_POST['genero']))
             </div>
 
             <div class="form-group">
-                <label for="disponibilidad">Disponibilidad:</label>
-                <select class="form-control" name="disponibilidad">
-                    <option value="disponible" <?php echo $id_pelicula ? ($_GET['disponibilidad'] === "disponible" ? 'selected' : '') : '' ?>>Disponible</option>
-                    <option value="no disponible" <?php echo $id_pelicula ? ($_GET['disponibilidad'] === "no disponible" ? 'selected' : '') : '' ?>>No disponible</option>
-                </select>
-            </div>
+    <label for="disponibilidad">Disponibilidad:</label>
+    <select class="form-control" name="disponibilidad" id="disponibilidadSelect">
+        <option value="Torrent" <?php echo $id_pelicula ? ($_GET['disponibilidad'] === "Torrent" ? 'selected' : '') : '' ?>>Torrent</option>
+        <option value="Mega" <?php echo $id_pelicula ? ($_GET['disponibilidad'] === "Mega" ? 'selected' : '') : '' ?>>Mega</option>
+        <option value="Mediafire" <?php echo $id_pelicula ? ($_GET['disponibilidad'] === "Mediafire" ? 'selected' : '') : '' ?>>Mediafire</option>
+        <option value="No disponible" <?php echo $id_pelicula ? ($_GET['disponibilidad'] === "No disponible" ? 'selected' : '') : '' ?>>No disponible</option>
+    </select>
+</div>
+
+<script>
+    var selectElement = document.getElementById('disponibilidadSelect');
+    selectElement.addEventListener('change', function() {
+        var selectedValue = selectElement.value;
+        var link = '';
+
+        switch (selectedValue) {
+            case 'Torrent':
+                link = 'https://www.utorrent.com/';
+                break;
+            case 'Mega':
+                link = 'https://mega.io/es'; 
+                break;
+            case 'Mediafire':
+                link = 'https://www.mediafire.com/'; 
+                break;
+            default:
+                link = '#'; 
+        }
+
+        var availabilityLink = document.getElementById('availabilityLink');
+        availabilityLink.href = link;
+    });
+</script>
+
+<!-- Un enlace oculto por defecto que se llenará dinámicamente -->
+<a id="availabilityLink" href="#" style="display: none;">Ver Disponibilidad</a>
 
             <div class="form-group">
                 <label for="resenia">Reseña:</label>

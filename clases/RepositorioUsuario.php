@@ -25,25 +25,32 @@ class Repositorio_Usuario extends Repositorio{
 
 	
 	public function save(Usuario $usuario, $clave){
-		
+
 		$q = "INSERT INTO usuarios (usuario, clave, nombre, apellido, email)";
 		$q.= "VALUES (?, ?, ?, ?, ?)";
 		$query = self::$conexion->prepare($q);
-		
-		$nombre_usuario = $usuario->getNombreUsuario();
-		
+	
+		$nombre_usuario = $usuario->getUsuario();
+	
 		$clave_encriptada = password_hash($clave, PASSWORD_DEFAULT);
 		
 		$nombre = $usuario->getNombre();
 		$apellido = $usuario->getApellido();
 		$email = $usuario->getEmail();	
-		$query->bind_param("sssss", $nombre_usuario, $clave_encriptada, $nombre, $apellido, $email);
+			$query->bind_param("sssss",
+			$nombre_usuario,
+			$clave_encriptada,
+			$nombre,
+			$apellido,
+			$email
+		);
 	
-	if ($query->execute()){
+		if ($query->execute()){
 		return self::$conexion->insert_id;
-	} else{
-		
-		return false;
+		} else{
+	
+			return false;
+		}
 	}
-}
-}
+	
+	}

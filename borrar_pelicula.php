@@ -10,7 +10,7 @@ if (empty($_POST['id_pelicula'])) {
     die();
 }
 
-$cp = new ControladorPeliculas($usuario->getNombreUsuario());
+$cp = new ControladorPeliculas($usuario->getUsuario());
 
 $result = $cp->borrarPelicula($_POST['id_pelicula']);
 

@@ -59,23 +59,32 @@ $peliculas = $cp->getAll();
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php
+                                <?php
                                 if (count($peliculas) === 0) {
-                                    echo
-                                        '<tr>
-                                        <th colspan="6" class="text-center"><h2>No se agregaron películas aún</h2></th>
-                                    </tr>';
-                                // }
+                                    echo '<tr>
+                <th colspan="6" class="text-center"><h2>No se agregaron películas aún</h2></th>
+            </tr>';
                                 } else {
                                     foreach ($peliculas as $pelicula) {
-                                        echo
-                                            '<tr>
-                                        <th scope="col" class="text-secondary text-center">' . $pelicula->getTitulo() . '</th>
-                                        <th scope="col" class="text-secondary text-center">' . $pelicula->getAnio() . '</th>
-                                        <th scope="col" class="text-secondary text-center">' . $pelicula->getGenero()->getNombre() . '</th>
-                                        <th scope="col" class="text-secondary text-center">' . $pelicula->getResenia() . '</th>
-                                        <th scope="col" class="text-secondary text-center">' . $pelicula->getDisponibilidad() . '</th>
-                                    </tr>';
+                                        echo '<tr>
+                    <th scope="col" class="text-secondary text-center">' . $pelicula->getTitulo() . '</th>
+                    <th scope="col" class="text-secondary text-center">' . $pelicula->getAnio() . '</th>
+                    <th scope="col" class="text-secondary text-center">' . $pelicula->getGenero()->getNombre() . '</th>
+                    <th scope="col" class="text-secondary text-center">' . $pelicula->getResenia() . '</th>
+                    <th scope="col" class="text-secondary text-center">';
+
+                                        // Verificar disponibilidad y mostrar el enlace correspondiente
+                                        if ($pelicula->getDisponibilidad() === "Torrent") {
+                                            echo '<a href="https://www.utorrent.com/">Torrent</a>';
+                                        } elseif ($pelicula->getDisponibilidad() === "Mega") {
+                                            echo '<a href="https://mega.io/es">Mega</a>';
+                                        } elseif ($pelicula->getDisponibilidad() === "Mediafire") {
+                                            echo '<a href="https://www.mediafire.com/">Mediafire</a>';
+                                        } else {
+                                            echo 'No disponible';
+                                        }
+                                        echo '</th>
+                </tr>';
                                     }
                                 }
                                 ?>
@@ -94,7 +103,6 @@ $peliculas = $cp->getAll();
                     echo 'document.getElementById("boton").style.display = "none";';
                     echo 'document.getElementById("Sesion").style.display = "block";';
                     echo 'document.getElementById("admin").style.display = "block";';
-
                 } else {
                     echo 'document.getElementById("boton").style.display = "block";';
                     echo 'document.getElementById("Sesion").style.display = "none";';

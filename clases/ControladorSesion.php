@@ -28,7 +28,7 @@ class Controlador_Sesion
 	{
 
 		$r = new Repositorio_Usuario();
-		$usuario = new Usuario($nombre_usuario, $clave, $nombre, $apellido, $email);
+		$usuario = new Usuario($nombre_usuario, $nombre, $apellido, $email);
 		$id = $r->save($usuario, $clave);
 		if ($id === false) {
 			return [false, "No se pudo crear el usuario"];
@@ -38,6 +38,6 @@ class Controlador_Sesion
 			$_SESSION['usuario'] = serialize($usuario);
 			return [true, "Usuario creado con exito!"];
 		}
-}
 
+	}
 }
